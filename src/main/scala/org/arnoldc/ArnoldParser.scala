@@ -41,7 +41,7 @@ class ArnoldParser extends Parser {
   val NonVoidMethod = "GIVE THESE PEOPLE AIR"
   val AssignVariableFromMethodCall = "GET YOUR ASS TO MARS"
   val Not = "IT'S NOT A TOOMAH!"
-  val IgnoreStatement = "YOU'VE JUST BEEN ERASED"
+  val IgnoreStatement = "YOU'VE JUST BEEN ERASED,"
   val CommentTextLine = "SHUT UP!!!!11"
 
   val EOL = zeroOrMore("\t" | "\r" | " ") ~ "\n" ~ zeroOrMore("\t" | "\r" | " " | "\n")
