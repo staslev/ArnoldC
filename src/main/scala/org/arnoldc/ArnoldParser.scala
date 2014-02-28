@@ -41,6 +41,8 @@ class ArnoldParser extends Parser {
   val NonVoidMethod = "GIVE THESE PEOPLE AIR"
   val AssignVariableFromMethodCall = "GET YOUR ASS TO MARS"
   val Not = "IT'S NOT A TOOMAH!"
+  val IgnoreStatement = "YOU'VE JUST BEEN ERASED"
+  val CommentTextLine = "SHUT UP!!!!11"
 
   val EOL = zeroOrMore("\t" | "\r" | " ") ~ "\n" ~ zeroOrMore("\t" | "\r" | " " | "\n")
   val WhiteSpace = oneOrMore(" " | "\t")
@@ -64,10 +66,14 @@ class ArnoldParser extends Parser {
       zeroOrMore(Statement) ~ EndMethodDeclaration ~~> MethodNode
   }
 
-  def Statement: Rule1[StatementNode] = rule {
-    DeclareIntStatement | PrintStatement |
+  def Statement: Rule1[IgnorableStatementNode] = rule {
+   optional((IgnoreStatement ~ WhiteSpace) ~> (s => s.isEmpty)) ~ (DeclareIntStatement | PrintStatement |
       AssignVariableStatement | ConditionStatement |
-      WhileStatement | CallMethodStatement | ReturnStatement
+      WhileStatement | CallMethodStatement | ReturnStatement) ~~> IgnorableStatementNode
+  }
+
+  def CommentLine: Rule1[CommentTextLineNode] = rule {
+    (CommentTextLine ~ WhiteSpace) ~ !EOL ~> (s => s) ~ EOL ~~> CommentTextLineNode
   }
 
   def CallMethodStatement: Rule1[StatementNode] = rule {
@@ -80,7 +86,6 @@ class ArnoldParser extends Parser {
     If ~ WhiteSpace ~ Operand ~ EOL ~ zeroOrMore(Statement) ~
       (Else ~ EOL ~ zeroOrMore(Statement) ~~> ConditionNode
         | zeroOrMore(Statement) ~~> ConditionNode) ~ EndIf ~ EOL
-
   }
 
   def WhileStatement: Rule1[WhileNode] = rule {
