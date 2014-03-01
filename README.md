@@ -85,7 +85,7 @@ Check the [wiki](http://github.com/lhartikk/ArnoldC/wiki/ArnoldC) for more detai
 
 [EndAssignVariable](http://www.youtube.com/watch?v=rk9WHasIZk0) `ENOUGH TALK`
 
-[IgnoreStatement](http://www.youtube.com/watch?v=uvlaojjyTWY) `YOU'VE JUST BEEN ERASED,`
+[SuppressModifier](http://www.youtube.com/watch?v=uvlaojjyTWY) `YOU'VE JUST BEEN ERASED,`
 
 [CommentTextLine](http://www.youtube.com/watch?v=Z6woIRLnbmE) `SHUT UP!!!!11`
 

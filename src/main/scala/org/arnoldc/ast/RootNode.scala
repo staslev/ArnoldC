@@ -4,7 +4,12 @@ import org.objectweb.asm.Opcodes._
 import org.objectweb.asm.{MethodVisitor, ClassWriter}
 import org.arnoldc.{MethodInformation, SymbolTable}
 
-case class RootNode(methods: List[AbstractMethodNode]) extends AstNode {
+case class RootNode(suppressibleMethods: List[AbstractMethodNode]) extends AstNode {
+
+  val methods = suppressibleMethods filter {
+    case method: SuppressibleMethodNode => !method.suppressed
+    case _ => true
+  }
 
   def generateByteCode(filename: String): Array[Byte] = {
     val globalSymbols = storeMethodSignatures(filename)

@@ -6,7 +6,6 @@ import org.arnoldc.ast._
 
 class ArnoldParser extends Parser {
 
-
   val ParseError = "WHAT THE FUCK DID I DO WRONG"
 
   val DeclareInt = "HEY CHRISTMAS TREE"
@@ -41,7 +40,7 @@ class ArnoldParser extends Parser {
   val NonVoidMethod = "GIVE THESE PEOPLE AIR"
   val AssignVariableFromMethodCall = "GET YOUR ASS TO MARS"
   val Not = "IT'S NOT A TOOMAH!"
-  val IgnoreStatement = "YOU'VE JUST BEEN ERASED,"
+  val SuppressModifier = "YOU'VE JUST BEEN ERASED,"
   val CommentTextLine = "SHUT UP!!!!11"
 
   val EOL = zeroOrMore("\t" | "\r" | " ") ~ "\n" ~ zeroOrMore("\t" | "\r" | " " | "\n")
@@ -60,16 +59,16 @@ class ArnoldParser extends Parser {
   }
 
   def Method: Rule1[AbstractMethodNode] = rule {
-    DeclareMethod ~ WhiteSpace ~ VariableName ~> (s => s) ~ EOL ~
-      zeroOrMore(MethodArguments ~ WhiteSpace ~ Variable ~ EOL) ~
-      (NonVoidMethod | "") ~> ((m: String) => m == NonVoidMethod) ~ optional(EOL) ~
-      zeroOrMore(Statement) ~ EndMethodDeclaration ~~> MethodNode
+     optional(SuppressModifier ~ WhiteSpace) ~> {suppressText => !suppressText.isEmpty } ~ DeclareMethod ~ WhiteSpace ~
+       VariableName ~> (s => s) ~ EOL ~ zeroOrMore(MethodArguments ~ WhiteSpace ~ Variable ~ EOL) ~
+       (NonVoidMethod | "") ~> ((m: String) => m == NonVoidMethod) ~ optional(EOL) ~ zeroOrMore(Statement) ~
+       EndMethodDeclaration ~~> MethodNode ~~> SuppressibleMethodNode
   }
-
-  def Statement: Rule1[IgnorableStatementNode] = rule {
-   optional((IgnoreStatement ~ WhiteSpace) ~> (s => s.isEmpty)) ~ (DeclareIntStatement | PrintStatement |
-      AssignVariableStatement | ConditionStatement |
-      WhileStatement | CallMethodStatement | ReturnStatement) ~~> IgnorableStatementNode
+  
+ def Statement: Rule1[StatementNode] = rule {
+   optional(SuppressModifier ~ WhiteSpace) ~> {suppressText => !suppressText.isEmpty } ~
+     (DeclareIntStatement | PrintStatement | AssignVariableStatement | ConditionStatement | WhileStatement |
+       CallMethodStatement | ReturnStatement) ~~> SuppressibleStatementNode
   }
 
   def CommentLine: Rule1[CommentTextLineNode] = rule {
