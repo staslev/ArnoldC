@@ -6,10 +6,7 @@ import org.arnoldc.{MethodInformation, SymbolTable}
 
 case class RootNode(suppressibleMethods: List[AbstractMethodNode]) extends AstNode {
 
-  val methods = suppressibleMethods filter {
-    case method: SuppressibleMethodNode => !method.suppressed
-    case _ => true
-  }
+  val methods = suppressibleMethods filter { !_.isInstanceOf[SuppressedMethodNode] }
 
   def generateByteCode(filename: String): Array[Byte] = {
     val globalSymbols = storeMethodSignatures(filename)

@@ -41,11 +41,13 @@ class ArnoldParser extends Parser {
   val AssignVariableFromMethodCall = "GET YOUR ASS TO MARS"
   val Not = "IT'S NOT A TOOMAH!"
   val SuppressModifier = "YOU'VE JUST BEEN ERASED,"
-  val CommentTextLine = "SHUT UP!!!!11"
+  val DescriptionPrefix = "WHAT THE HELL ARE YOU?"
 
   val EOL = zeroOrMore("\t" | "\r" | " ") ~ "\n" ~ zeroOrMore("\t" | "\r" | " " | "\n")
   val WhiteSpace = oneOrMore(" " | "\t")
-
+  val DescriptionBody = oneOrMore(("a" - "z") | ("A" - "Z") | ("0" - "9") | ("!" - "?") |
+                                    ("[" -  "`") | ("{" - "~") | ch('@') | WhiteSpace)
+  
   def Root: Rule1[RootNode] = rule {
     oneOrMore(AbstractMethod) ~ EOI ~~> RootNode
   }
@@ -59,20 +61,35 @@ class ArnoldParser extends Parser {
   }
 
   def Method: Rule1[AbstractMethodNode] = rule {
-     optional(SuppressModifier ~ WhiteSpace) ~> {suppressText => !suppressText.isEmpty } ~ DeclareMethod ~ WhiteSpace ~
-       VariableName ~> (s => s) ~ EOL ~ zeroOrMore(MethodArguments ~ WhiteSpace ~ Variable ~ EOL) ~
-       (NonVoidMethod | "") ~> ((m: String) => m == NonVoidMethod) ~ optional(EOL) ~ zeroOrMore(Statement) ~
-       EndMethodDeclaration ~~> MethodNode ~~> SuppressibleMethodNode
-  }
-  
- def Statement: Rule1[StatementNode] = rule {
-   optional(SuppressModifier ~ WhiteSpace) ~> {suppressText => !suppressText.isEmpty } ~
-     (DeclareIntStatement | PrintStatement | AssignVariableStatement | ConditionStatement | WhileStatement |
-       CallMethodStatement | ReturnStatement) ~~> SuppressibleStatementNode
+    optional(Description) ~ (SuppressedMethod | ExecutableMethod)
   }
 
-  def CommentLine: Rule1[CommentTextLineNode] = rule {
-    (CommentTextLine ~ WhiteSpace) ~ !EOL ~> (s => s) ~ EOL ~~> CommentTextLineNode
+  def ExecutableMethod: Rule1[AbstractMethodNode] = rule {
+    DeclareMethod ~ WhiteSpace ~ VariableName ~> (s => s) ~ EOL ~
+      zeroOrMore(MethodArguments ~ WhiteSpace ~ Variable ~ EOL) ~
+     (NonVoidMethod | "") ~> ((m: String) => m == NonVoidMethod) ~ optional(EOL) ~
+      zeroOrMore(Statement) ~ EndMethodDeclaration ~~> MethodNode
+  }
+
+  def SuppressedMethod: Rule1[AbstractMethodNode] = rule {
+    SuppressModifier ~ WhiteSpace ~ ExecutableMethod ~~> SuppressedMethodNode
+  }
+
+  def ExecutableStatement: Rule1[StatementNode] = rule {
+   DeclareIntStatement | PrintStatement | AssignVariableStatement | ConditionStatement | WhileStatement |
+     CallMethodStatement | ReturnStatement
+  }
+
+  def SuppressedStatement: Rule1[StatementNode] = rule {
+   SuppressModifier ~ WhiteSpace ~ ExecutableStatement ~~> SuppressedStatementNode
+  }
+
+  def Description: Rule0 = rule {
+    DescriptionPrefix ~ DescriptionBody ~ EOL
+  }
+
+  def Statement: Rule1[StatementNode] = rule {
+    optional(Description) ~ (SuppressedStatement | ExecutableStatement)
   }
 
   def CallMethodStatement: Rule1[StatementNode] = rule {

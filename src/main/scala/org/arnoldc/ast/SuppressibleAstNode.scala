@@ -3,7 +3,7 @@ package org.arnoldc.ast
 import org.objectweb.asm.MethodVisitor
 import org.arnoldc.SymbolTable
 
-trait SuppressibleAstNode { this: AstNodeDecorator[_ <: AstNode] =>
+trait SuppressibleAstNode[+T<:AstNode] extends AstNodeDecorator[T]{
 
   val suppressed: Boolean
 

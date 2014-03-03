@@ -87,6 +87,6 @@ Check the [wiki](http://github.com/lhartikk/ArnoldC/wiki/ArnoldC) for more detai
 
 [SuppressModifier](http://www.youtube.com/watch?v=uvlaojjyTWY) `YOU'VE JUST BEEN ERASED,`
 
-[CommentTextLine](http://www.youtube.com/watch?v=Z6woIRLnbmE) `SHUT UP!!!!11`
+[DescriptionStart](http://www.youtube.com/watch?v=AzllNSKItYw) `WHAT THE HELL ARE YOU?`
 
 [ParseError](http://www.youtube.com/watch?v=oGcRTJK43OM) `WHAT THE FUCK DID I DO WRONG`
