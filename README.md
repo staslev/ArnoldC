@@ -12,13 +12,6 @@ Although the one-liners of Arnold Schwarzenegger are fairly well known the true 
 		TALK TO THE HAND "hello world"
 	YOU HAVE BEEN TERMINATED
 
-##Quick Start
-
-	wget http://lhartikk.github.io/ArnoldC.jar
-	echo -e "IT'S SHOWTIME\nTALK TO THE HAND \"hello world\"\nYOU HAVE BEEN TERMINATED" > hello.arnoldc
-	java -jar ArnoldC.jar hello.arnoldc
-	java hello
-
 ##Brief overview of the keywords
 
 Check the [wiki](http://github.com/lhartikk/ArnoldC/wiki/ArnoldC) for more details
