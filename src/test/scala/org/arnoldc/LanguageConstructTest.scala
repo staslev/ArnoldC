@@ -2,7 +2,7 @@ package org.arnoldc
 
 class LanguageConstructTest extends ArnoldGeneratorTest {
 
-  it should "Ignore commented out print statements" in {
+  it should "Ignore print statements having an ignore modifier" in {
     val code = "IT'S SHOWTIME\n" +
       "HEY CHRISTMAS TREE var\n" +
       "YOU SET US UP 10\n" +
@@ -15,7 +15,7 @@ class LanguageConstructTest extends ArnoldGeneratorTest {
     getOutput(code) should equal("11\n")
   }
 
-  it should "Ignore commented out simple if else statements" in {
+  it should "Ignore simple if else statements having an ignore modifier" in {
     val code =
       "IT'S SHOWTIME\n" +
         "HEY CHRISTMAS TREE vartrue\n" +
@@ -34,7 +34,7 @@ class LanguageConstructTest extends ArnoldGeneratorTest {
     getOutput(code) should equal("this branch should be reached\n")
   }
 
-  it should "function when while loop executed once" in {
+  it should "Ignore while loops having an ignore modifier" in {
     val code =
       "IT'S SHOWTIME\n" +
         "HEY CHRISTMAS TREE vartrue\n" +
@@ -59,7 +59,7 @@ class LanguageConstructTest extends ArnoldGeneratorTest {
     getOutput(code) should equal("while statement printed once\n")
   }
 
-  it should "Ignore commented out method invocations" in {
+  it should "Ignore method invocations having an ignore modifier" in {
     val code =
       "IT'S SHOWTIME\n" +
         "HEY CHRISTMAS TREE argument\n" +
@@ -74,7 +74,7 @@ class LanguageConstructTest extends ArnoldGeneratorTest {
     getOutput(code) should equal("123\n")
   }
 
-  it should "Ignore commented out method declaration" in {
+  it should "Ignore method declarations having an ignore modifier" in {
     val code =
       "IT'S SHOWTIME\n" +
         "HEY CHRISTMAS TREE argument\n" +
