@@ -14,7 +14,7 @@ Although the one-liners of Arnold Schwarzenegger are fairly well known the true 
 
 ##Brief overview of the keywords
 
-Check the [wiki](http://github.com/lhartikk/ArnoldC/wiki/ArnoldC) for more details
+Check the [wiki](https://github.com/staslev/ArnoldC/wiki/ArnoldC) for more details
 
 [False](http://www.youtube.com/watch?v=_wk-jT9rn-8) `I LIED`
 
