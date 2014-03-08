@@ -46,7 +46,7 @@ Check the [wiki](http://github.com/lhartikk/ArnoldC/wiki/ArnoldC) for more detai
 
 [And](http://www.youtube.com/watch?v=ZQ_Q2b_aXjk) `KNOCK KNOCK`
 
-[Not](http://www.youtube.com/watch?v=OaTO8_KNcuo) `IT'S NOT A TOOMAH!`
+**(new) [Not](http://www.youtube.com/watch?v=OaTO8_KNcuo) `IT'S NOT A TOOMAH!`**
 
 [DeclareMethod](http://www.youtube.com/watch?v=uCwrOpnyXeo) `LISTEN TO ME VERY CAREFULLY`
 
@@ -78,8 +78,8 @@ Check the [wiki](http://github.com/lhartikk/ArnoldC/wiki/ArnoldC) for more detai
 
 [EndAssignVariable](http://www.youtube.com/watch?v=rk9WHasIZk0) `ENOUGH TALK`
 
-[SuppressModifier](http://www.youtube.com/watch?v=uvlaojjyTWY) `YOU'VE JUST BEEN ERASED,`
+**(new) [SuppressModifier](http://www.youtube.com/watch?v=uvlaojjyTWY) `YOU'VE JUST BEEN ERASED,`**
 
-[DescriptionStart](http://www.youtube.com/watch?v=AzllNSKItYw) `WHAT THE HELL ARE YOU?`
+**(new) [DescriptionStart](http://www.youtube.com/watch?v=AzllNSKItYw) `WHAT THE HELL ARE YOU?`**
 
 [ParseError](http://www.youtube.com/watch?v=oGcRTJK43OM) `WHAT THE FUCK DID I DO WRONG`
