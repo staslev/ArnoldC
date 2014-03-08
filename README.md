@@ -80,6 +80,6 @@ Check the [wiki](https://github.com/staslev/ArnoldC/wiki/ArnoldC) for more detai
 
 **(new) [SuppressModifier](http://www.youtube.com/watch?v=uvlaojjyTWY) `YOU'VE JUST BEEN ERASED,`**
 
-**(new) [DescriptionStart](http://www.youtube.com/watch?v=AzllNSKItYw) `WHAT THE HELL ARE YOU?`**
+**(new) [Description](http://www.youtube.com/watch?v=AzllNSKItYw) `WHAT THE HELL ARE YOU?`**
 
 [ParseError](http://www.youtube.com/watch?v=oGcRTJK43OM) `WHAT THE FUCK DID I DO WRONG`
